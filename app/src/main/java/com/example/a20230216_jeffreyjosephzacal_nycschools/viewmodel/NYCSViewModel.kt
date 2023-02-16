@@ -1,5 +1,6 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,9 +14,10 @@ import kotlinx.coroutines.launch
 class NYCSViewModel : ViewModel() {
     var nycSchools = MutableLiveData<List<NYSchoolsItem>>()
     var nycSATScores = MutableLiveData<List<SATScoresItem>>()
-    var currentSchool = MutableLiveData<String?>().apply { value = null }
-
-    fun getAllSchool() {
+    init {
+        getAllSchoolData()
+    }
+    fun getAllSchoolData() {
         viewModelScope.launch(Dispatchers.IO) {
             nycSchools.postValue(
                async {
@@ -28,4 +30,17 @@ class NYCSViewModel : ViewModel() {
             }
     }
 
+    fun getSATScores(dbn : String) : SATScoresItem? {
+        Log.d("Meow", "Looking for " + dbn)
+        Log.d("Meow", "from list count " + nycSATScores.value?.size.toString())
+        return nycSATScores.value?.firstOrNull { it.dbn.equals(dbn,true) }
+    }
+
+    fun getSchoolsCount() : Int {
+        return nycSchools.value?.size ?: 0
+    }
+
+    fun getSATScoresCount() : Int {
+        return nycSATScores.value?.size ?: 0
+    }
 }

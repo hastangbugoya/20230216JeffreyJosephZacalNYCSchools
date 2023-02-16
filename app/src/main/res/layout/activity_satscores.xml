@@ -5,5 +5,108 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.SATScoresActivity">
+    <TextView
+        android:id="@+id/school_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="School Name"
+        android:fontFamily="@font/gothamic"
+        android:textSize="32sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintVertical_bias="0.3"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/takers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Takers"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/school_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/num_takers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="999"
+        android:fontFamily="@font/gothamic"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/takers"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/critical_reading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Critical Reading"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/num_takers"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/critical_reading_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="999"
+        android:fontFamily="@font/gothamic"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/critical_reading"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/math"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Math"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/critical_reading_score"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/math_avg_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="999"
+        android:fontFamily="@font/gothamic"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/math"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/writing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Writing"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/math_avg_score"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/writing_avg_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="999"
+        android:fontFamily="@font/gothamic"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/writing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
