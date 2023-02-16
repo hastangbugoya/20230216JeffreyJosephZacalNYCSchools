@@ -1,6 +1,5 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools
 
-import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,16 +10,8 @@ import com.example.a20230216_jeffreyjosephzacal_nycschools.view.NYSchoolListAdap
 import com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel.NYCSViewModel
 
 class MainActivity : AppCompatActivity() {
-
-//    @Inject
-//    lateinit var myAdapter: NYSchoolListAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        val component = DaggerSchoolsAdapterComponent
-//            .builder().contextModule(ContextModule(this)).build()
-//        component.inject(this)
 
         val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         val view = binding.root
@@ -29,15 +20,10 @@ class MainActivity : AppCompatActivity() {
         var myAdapter = NYSchoolListAdapter(this)
         val mySchoolRecyclerView = binding.schoolList
         mySchoolRecyclerView.adapter = myAdapter
-        val sharedViewModel = ViewModelProvider(this).get(NYCSViewModel::class.java)
-        sharedViewModel.nycSchools.observe(this) {
+        val myViewModel : NYCSViewModel by viewModels<NYCSViewModel>()
+        myViewModel.nycSchools.observe(this) {
             myAdapter.setSchools(it)
         }
-
-        sharedViewModel.nycSATScores.observe(this) {
-
-        }
     }
-
 }
 

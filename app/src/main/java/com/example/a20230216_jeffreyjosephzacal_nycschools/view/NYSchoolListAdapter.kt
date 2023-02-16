@@ -13,11 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.NYSchoolsItem
 import com.example.a20230216_jeffreyjosephzacal_nycschools.databinding.SchoolItemBinding
 
-
-
-
-
-//class NYSchoolListAdapter @Inject constructor(private val context: Context)
 class NYSchoolListAdapter(private val context: Context) : RecyclerView.Adapter<NYSchoolListAdapter.SchoolViewHolder>() {
     var schoolList : MutableList<NYSchoolsItem> = mutableListOf()
     inner class SchoolViewHolder(binding: SchoolItemBinding ) : RecyclerView.ViewHolder(binding.root) {
@@ -33,11 +28,11 @@ class NYSchoolListAdapter(private val context: Context) : RecyclerView.Adapter<N
         holder.binding.apply {
             schoolName.text = StringBuilder()
                 .append(schoolList.get(position).schoolName)
-                .append("(")
+                .append(" (")
                 .append(schoolList.get(position).dbn).append(")")
             schoolAddress.text = schoolList.get(position).primaryAddressLine1
             schoolEmail.text = schoolList.get(position).schoolEmail
-            schoolItem.setOnClickListener() {
+            schoolItem.setOnClickListener {
                 Intent(context, SATScoresActivity::class.java).apply {
                     putExtra("school_id", schoolList.get(position).dbn)
                     startActivity(context,this,null)

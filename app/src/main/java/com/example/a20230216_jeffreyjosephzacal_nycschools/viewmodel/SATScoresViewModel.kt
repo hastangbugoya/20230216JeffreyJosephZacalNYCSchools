@@ -1,32 +1,27 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.a20230216_jeffreyjosephzacal_nycschools.data.NYSchoolsItem
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.SATScoresItem
 import com.example.a20230216_jeffreyjosephzacal_nycschools.network.MyRetrofit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class NYCSViewModel : ViewModel() {
-    var nycSchools = MutableLiveData<List<NYSchoolsItem>>()
+class SATScoresViewModel : ViewModel() {
+    var nycSATScores = MutableLiveData<List<SATScoresItem>>()
     init {
-        getAllSchoolData()
+        getAllSATData()
     }
-    fun getAllSchoolData() {
+    fun getAllSATData() {
         viewModelScope.launch(Dispatchers.IO) {
-            nycSchools.postValue(
-                async {
-                    MyRetrofit.create().getSchools().body()
-                }.await()
-            )
+            nycSATScores.postValue(
+                async{
+                    MyRetrofit.create().getSATScores().body()
+                }.await())
         }
     }
-
-    fun getSchoolsCount() : Int {
-        return nycSchools.value?.size ?: 0
-    }
+    fun getSchoolScores(sID : String) : SATScoresItem? = nycSATScores.value?.firstOrNull { it.dbn.equals(sID) }
+    fun scoresCount() : Int = nycSATScores.value?.size ?: 0
 }

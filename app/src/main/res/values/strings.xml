@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">20230216-JeffreyJosephZacal-NYCSchools</string>
+    <string name="school_name">School Name</string>
+    <string name="takers">Number of SAT takers</string>
+    <string name="critical_reading">Critical Reading</string>
+    <string name="math">MAth</string>
+    <string name="writing">Writing</string>
 </resources>
