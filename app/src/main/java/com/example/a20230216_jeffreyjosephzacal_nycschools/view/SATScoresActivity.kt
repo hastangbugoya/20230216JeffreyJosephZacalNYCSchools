@@ -21,11 +21,13 @@ class SATScoresActivity : AppCompatActivity() {
         myViewModel.nycSATScores.observe(this) {
             intent.getStringExtra("school_id")?.let { dbn ->
                 myViewModel.getSchoolScores(dbn)?.let { scores ->
-                    binding.schoolName.text = scores.schoolName
-                    binding.numTakers.text = scores.numOfSatTestTakers
-                    binding.criticalReadingScore.text = scores.satCriticalReadingAvgScore
-                    binding.mathAvgScore.text = scores.satMathAvgScore
-                    binding.writingAvgScore.text = scores.satWritingAvgScore
+                    binding.apply {
+                        schoolName.text = scores.schoolName
+                        numTakers.text = scores.numOfSatTestTakers
+                        criticalReadingScore.text = scores.satCriticalReadingAvgScore
+                        mathAvgScore.text = scores.satMathAvgScore
+                        writingAvgScore.text = scores.satWritingAvgScore
+                    }
                 } ?: Toast.makeText(this, "School ID not found id data", Toast.LENGTH_LONG).show()
             } ?: Toast.makeText(this, "Error on retrieving school ID", Toast.LENGTH_LONG).show()
         }

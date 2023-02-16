@@ -18,7 +18,7 @@ class SATScoresViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             nycSATScores.postValue(
                 async{
-                    MyRetrofit.create().getSATScores().body()
+                    MyRetrofit.getService().getSATScores().body()
                 }.await())
         }
     }

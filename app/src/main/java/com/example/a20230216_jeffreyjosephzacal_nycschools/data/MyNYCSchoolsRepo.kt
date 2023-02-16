@@ -11,7 +11,7 @@ class MyNYCSchoolsRepo {
     fun getAllSchool(): List<NYSchoolsItem> {
         var data = listOf<NYSchoolsItem>()
         CoroutineScope(Dispatchers.IO).launch {
-            data = async { MyRetrofit.create().getSchools().body()?.toList() ?: listOf() }.await()
+            data = async { MyRetrofit.getService().getSchools().body()?.toList() ?: listOf() }.await()
         }
         return data
     }
@@ -19,7 +19,7 @@ class MyNYCSchoolsRepo {
     fun getAllScores() : List<SATScoresItem> {
         var data = listOf<SATScoresItem>()
         CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-            data = async { MyRetrofit.create().getSATScores().body()?.toList() ?: listOf() }.await()
+            data = async { MyRetrofit.getService().getSATScores().body()?.toList() ?: listOf() }.await()
         }
         return data
     }

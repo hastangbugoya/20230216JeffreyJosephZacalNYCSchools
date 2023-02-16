@@ -20,7 +20,7 @@ class NYCSViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             nycSchools.postValue(
                 async {
-                    MyRetrofit.create().getSchools().body()
+                    MyRetrofit.getService().getSchools().body()
                 }.await()
             )
         }

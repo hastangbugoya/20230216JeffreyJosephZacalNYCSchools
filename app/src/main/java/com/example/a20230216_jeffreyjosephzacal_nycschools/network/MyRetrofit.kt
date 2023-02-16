@@ -12,14 +12,11 @@ class MyRetrofit {
     companion object {
         private const val BASE_URL = "https://data.cityofnewyork.us/resource/"
 
-        fun create(): NYSchoolService {
-            val retrofit = Retrofit.Builder()
+        fun createRetofit(): Retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-
-            return retrofit.create(NYSchoolService::class.java)
-        }
+        fun getService() : NYSchoolService = createRetofit().create(NYSchoolService::class.java)
     }
 
     interface NYSchoolService {
