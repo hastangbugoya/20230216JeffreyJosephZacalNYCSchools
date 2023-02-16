@@ -12,8 +12,9 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.NYSchoolsItem
 import com.example.a20230216_jeffreyjosephzacal_nycschools.databinding.SchoolItemBinding
+import javax.inject.Inject
 
-class NYSchoolListAdapter(private val context: Context) : RecyclerView.Adapter<NYSchoolListAdapter.SchoolViewHolder>() {
+class NYSchoolListAdapter @Inject constructor(private val context: Context) : RecyclerView.Adapter<NYSchoolListAdapter.SchoolViewHolder>() {
     var schoolList : MutableList<NYSchoolsItem> = mutableListOf()
     inner class SchoolViewHolder(binding: SchoolItemBinding ) : RecyclerView.ViewHolder(binding.root) {
         var binding : SchoolItemBinding = binding
