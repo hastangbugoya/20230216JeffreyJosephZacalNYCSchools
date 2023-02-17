@@ -32,6 +32,7 @@ class SATScoresActivity : AppCompatActivity() {
                         writingAvgScore.text = scores.satWritingAvgScore
                     }
                 } ?: Toast.makeText(this, "School ID not found id data", Toast.LENGTH_LONG).show()
+
             } ?: Toast.makeText(this, "Error on retrieving school ID", Toast.LENGTH_LONG).show()
         }
     }
