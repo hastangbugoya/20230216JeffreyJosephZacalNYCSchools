@@ -1,5 +1,8 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel
-
+/*
+ * ViewModel using MutableLiveData observed in SATScoresActivity
+ *
+ */
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

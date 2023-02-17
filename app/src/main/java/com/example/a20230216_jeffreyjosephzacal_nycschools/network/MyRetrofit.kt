@@ -7,7 +7,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-
+/*
+ * Retrofit class for API calls
+ */
 class MyRetrofit {
     companion object {
         private const val BASE_URL = "https://data.cityofnewyork.us/resource/"

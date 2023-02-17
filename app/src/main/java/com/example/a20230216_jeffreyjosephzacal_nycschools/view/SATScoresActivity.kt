@@ -1,5 +1,8 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.view
-
+/*
+ * Displays school SAT scores
+ * Other details can be added as required such a maps, url links and other school details
+ */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,5 +1,7 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.data
-
+/*
+ * Response items
+ */
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,5 +1,8 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.view
-
+/*
+ * Adapter for MainActivity recycler view
+ * MainActivty context is injected to launch second activity
+ */
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
