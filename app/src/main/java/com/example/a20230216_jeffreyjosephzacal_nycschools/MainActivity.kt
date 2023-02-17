@@ -1,6 +1,9 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools
-
-import android.content.Context
+/*
+ * MainActivity for app
+ * di is used for recycler view adapted
+ *
+ */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +14,6 @@ import com.example.a20230216_jeffreyjosephzacal_nycschools.di.DaggerSchoolsAdapt
 import com.example.a20230216_jeffreyjosephzacal_nycschools.di.NYSchoolListAdapterModule
 import com.example.a20230216_jeffreyjosephzacal_nycschools.view.NYSchoolListAdapter
 import com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel.NYCSViewModel
-import dagger.internal.DaggerCollections
-import dagger.internal.DaggerGenerated
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
