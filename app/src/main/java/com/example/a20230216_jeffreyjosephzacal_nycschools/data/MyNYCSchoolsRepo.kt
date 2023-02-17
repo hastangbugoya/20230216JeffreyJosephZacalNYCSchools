@@ -8,6 +8,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MyNYCSchoolsRepo {
+    // Repo option
     fun getAllSchool(): List<NYSchoolsItem> {
         var data = listOf<NYSchoolsItem>()
         CoroutineScope(Dispatchers.IO).launch {
