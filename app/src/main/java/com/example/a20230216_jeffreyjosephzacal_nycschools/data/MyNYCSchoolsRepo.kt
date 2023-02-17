@@ -1,6 +1,5 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.data
 
-import android.util.Log
 import com.example.a20230216_jeffreyjosephzacal_nycschools.network.MyRetrofit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

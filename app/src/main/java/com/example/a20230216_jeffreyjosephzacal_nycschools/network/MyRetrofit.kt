@@ -2,7 +2,6 @@ package com.example.a20230216_jeffreyjosephzacal_nycschools.network
 
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.NYSchools
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.SATScores
-import com.example.a20230216_jeffreyjosephzacal_nycschools.data.SATScoresItem
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

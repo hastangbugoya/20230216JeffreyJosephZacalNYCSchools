@@ -1,8 +1,11 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.data
-
+/*
+ * SAT Scores API response body item with complete fields for future reference
+ *
+ */
 
 import com.google.gson.annotations.SerializedName
-// from API response all columns
+
 data class NYSchoolsItem2(
     @SerializedName("academicopportunities1")
     var academicopportunities1: String? = "",
