@@ -1,13 +1,14 @@
 package com.example.a20230216_jeffreyjosephzacal_nycschools.data
 
+import android.util.Log
 import com.example.a20230216_jeffreyjosephzacal_nycschools.network.MyRetrofit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import retrofit2.create
 
 class MyNYCSchoolsRepo {
-    // Repository option
     fun getAllSchool(): List<NYSchoolsItem> {
         var data = listOf<NYSchoolsItem>()
         CoroutineScope(Dispatchers.IO).launch {
