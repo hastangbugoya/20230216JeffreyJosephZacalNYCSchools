@@ -8,6 +8,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AlertType
+import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AuthenticationResult
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.BiometricStatus
 
 object AuthenticateFingerprint {
@@ -56,6 +57,7 @@ object AuthenticateFingerprint {
     interface UIUpdate {
         fun displayAlert(s : String, type : AlertType)
         fun updateAAuthenticationStatus(status : BiometricStatus)
+        fun displayAuthenticationResult(result : AuthenticationResult)
     }
 }
 
