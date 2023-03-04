@@ -18,6 +18,8 @@ data class NYSchoolsItem(
     var totalStudents: String? = "",
     @SerializedName("website")
     var website: String? = "",
+    @SerializedName("city")
+    var city: String? = "",
     @SerializedName("zip")
     var zip: String? = ""
 )

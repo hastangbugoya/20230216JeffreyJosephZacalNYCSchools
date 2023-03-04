@@ -20,16 +20,31 @@ class SATScoresActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val myViewModel: SATScoresViewModel by viewModels<SATScoresViewModel>()
+        val myViewModel: SATScoresViewModel by viewModels()
         myViewModel.nycSATScores.observe(this) {
             intent.getStringExtra("school_id")?.let { dbn ->
                 myViewModel.getSchoolScores(dbn)?.let { scores ->
                     binding.apply {
-                        schoolName.text = scores.schoolName
-                        numTakers.text = scores.numOfSatTestTakers
-                        criticalReadingScore.text = scores.satCriticalReadingAvgScore
-                        mathAvgScore.text = scores.satMathAvgScore
-                        writingAvgScore.text = scores.satWritingAvgScore
+                        schoolName.apply {
+                            text = scores.schoolName
+                            contentDescription = "SAT Scores for ${scores.schoolName}}"
+                        }
+                        numTakers.apply {
+                            text = scores.numOfSatTestTakers
+                            contentDescription = "$text students took S.A.T.s"
+                        }
+                        criticalReadingScore.apply {
+                            text = scores.satCriticalReadingAvgScore
+                            contentDescription = "average critical reading score is $text"
+                        }
+                        mathAvgScore.apply {
+                            text = scores.satMathAvgScore
+                            contentDescription = "average math score is $text"
+                        }
+                        writingAvgScore.apply {
+                            text = scores.satWritingAvgScore
+                            contentDescription = "average writing score is $text"
+                        }
                     }
                 } ?: Toast.makeText(this, "School ID not found id data", Toast.LENGTH_LONG).show()
 

@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class NYSchoolListAdapterModule(context: Context) {
+class NYSchoolListAdapterModule {
     @Provides
     fun provideNYSchoolListAdapter(context: Context): NYSchoolListAdapter {
         return NYSchoolListAdapter(context)
