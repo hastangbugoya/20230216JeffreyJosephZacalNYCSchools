@@ -47,17 +47,6 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
         myViewModel.nycSchools.observe(this) {
             myAdapter.setSchools(it)
         }
-
-        myViewModel.biometricStatus.observeForever() {
-            it.let {
-                Log.d("Meow", "Biometric Detected")
-            }
-        }
-        myViewModel.authenticationResult.observeForever() {
-            it.let {
-                Log.d("Meow", "Authentication Detected")
-            }
-        }
     }
 
     override fun displayAlert(s: String, type: AlertType) {
@@ -68,19 +57,19 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
     }
 
     override fun updateAAuthenticationStatus(status: BiometricStatus) {
-        myViewModel.biometricStatus.value = status
-        when (status) {
-            BiometricStatus.BIOMETRIC_UNKNOWN -> {}
-            BiometricStatus.BIOMETRIC_SUCCESS -> {}
-            BiometricStatus.BIOMETRIC_ERROR_NO_HARDWARE -> {}
-            BiometricStatus.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {}
-            BiometricStatus.BIOMETRIC_ERROR_NONE_ENROLLED -> {}
-        }
+        myViewModel.biometricStatus = status
+//        when (status) {
+//            BiometricStatus.BIOMETRIC_UNKNOWN -> {}
+//            BiometricStatus.BIOMETRIC_SUCCESS -> {}
+//            BiometricStatus.BIOMETRIC_ERROR_NO_HARDWARE -> {}
+//            BiometricStatus.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {}
+//            BiometricStatus.BIOMETRIC_ERROR_NONE_ENROLLED -> {}
+//        }
     }
 
     override fun updateAuthenticationResult(result: AuthenticationResult) {
+        myViewModel.authenticationResult = result
         var s = ""
-        myViewModel.authenticationResult.value = result
         val alertType : AlertType = when(result) {
             AuthenticationResult.AuthenticationSucceeded -> {
                 s = "Authentication Succeeded"

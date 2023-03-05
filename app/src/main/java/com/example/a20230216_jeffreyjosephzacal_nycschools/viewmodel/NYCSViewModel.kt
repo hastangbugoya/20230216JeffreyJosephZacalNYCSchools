@@ -15,11 +15,20 @@ import kotlinx.coroutines.*
 
 class NYCSViewModel : ViewModel() {
     var nycSchools = MutableLiveData<List<NYSchoolsItem>>()
-    var biometricStatus : MutableLiveData<BiometricStatus?> = MutableLiveData(null)
-    var authenticationResult : MutableLiveData<AuthenticationResult?> = MutableLiveData(null)
+    var biometricStatus: BiometricStatus? = null
+        get() = field
+        set(status) {
+            field = status
+        }
+    var authenticationResult: AuthenticationResult? = null
+        get() = field
+        set(result) {
+            field = result
+        }
     init {
         getAllSchoolData()
     }
+
     fun getAllSchoolData() {
         viewModelScope.launch(Dispatchers.Main) {
             nycSchools.value = withContext(Dispatchers.IO) {
@@ -37,7 +46,7 @@ class NYCSViewModel : ViewModel() {
 //        }
     }
 
-    fun getSchoolsCount() : Int {
+    fun getSchoolsCount(): Int {
         return nycSchools.value?.size ?: 0
     }
 }
