@@ -11,26 +11,30 @@ import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AlertType
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AuthenticationResult
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.BiometricStatus
 
-object AuthenticateFingerprint {
-    private var uiUpdate : UIUpdate?  = null
-    fun Authenticate(activity : FragmentActivity) {
-        if (checkDeviceHasBiometric(activity.applicationContext)){
+class AuthenticateFingerprint(val activity: FragmentActivity) {
+    private var uiUpdate: UIUpdate? = null
+    fun Authenticate() {
+        if (checkDeviceHasBiometric(activity.applicationContext)) {
             val executor = ContextCompat.getMainExecutor(activity)
 
-            val callback = object: BiometricPrompt.AuthenticationCallback() {
+            val callback = object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
-                    Log.d("AuthenticateFingerprint","$errorCode :: $errString")
+                    Log.d("AuthenticateFingerprint", "$errorCode :: $errString")
+                    uiUpdate?.updateAuthenticationResult(AuthenticationResult.AuthenticationError)
                     uiUpdate?.updateAAuthenticationStatus(BiometricStatus.BIOMETRIC_UNKNOWN)
                 }
+
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Log.d("AuthenticateFingerprint","Authentication failed")
+                    Log.d("AuthenticateFingerprint", "Authentication failed")
+                    uiUpdate?.updateAuthenticationResult(AuthenticationResult.AuthenticationFailed)
+                    uiUpdate?.updateAAuthenticationStatus(BiometricStatus.BIOMETRIC_UNKNOWN)
                 }
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Log.d("AuthenticateFingerprint","Authentication was successful")
+                    Log.d("AuthenticateFingerprint", "Authentication was successful")
                 }
             }
 
@@ -48,16 +52,18 @@ object AuthenticateFingerprint {
             biometricPrompt.authenticate(promptInfo)
         }
     }
-    fun checkDeviceHasBiometric(context: Context) : Boolean  = BiometricManager.from(context).canAuthenticate() == BIOMETRIC_SUCCESS
 
-    fun setUIUpdate(uiu : UIUpdate) {
+    fun checkDeviceHasBiometric(context: Context): Boolean =
+        BiometricManager.from(context).canAuthenticate() == BIOMETRIC_SUCCESS
+
+    fun setUIUpdate(uiu: UIUpdate) {
         uiUpdate = uiu
     }
 
     interface UIUpdate {
-        fun displayAlert(s : String, type : AlertType)
-        fun updateAAuthenticationStatus(status : BiometricStatus)
-        fun displayAuthenticationResult(result : AuthenticationResult)
+        fun displayAlert(s: String, type: AlertType)
+        fun updateAAuthenticationStatus(status: BiometricStatus)
+        fun updateAuthenticationResult(result: AuthenticationResult)
     }
 }
 

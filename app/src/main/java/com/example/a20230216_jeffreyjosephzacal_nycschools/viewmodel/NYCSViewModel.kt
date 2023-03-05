@@ -7,18 +7,16 @@ package com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AuthenticationResult
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.BiometricStatus
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.NYSchoolsItem
 import com.example.a20230216_jeffreyjosephzacal_nycschools.network.MyRetrofit
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class NYCSViewModel : ViewModel() {
     var nycSchools = MutableLiveData<List<NYSchoolsItem>>()
-    var biometricStatus = MutableLiveData<BiometricStatus?>().apply { value = BiometricStatus.BIOMETRIC_UNKNOWN }
-
+    var biometricStatus : MutableLiveData<BiometricStatus?> = MutableLiveData(null)
+    var authenticationResult : MutableLiveData<AuthenticationResult?> = MutableLiveData(null)
     init {
         getAllSchoolData()
     }

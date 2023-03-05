@@ -6,7 +6,9 @@ package com.example.a20230216_jeffreyjosephzacal_nycschools
  */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AlertType
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AuthenticationResult
@@ -22,7 +24,6 @@ import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
-
     @Inject
     lateinit var myAdapter: NYSchoolListAdapter
 
@@ -46,6 +47,17 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
         myViewModel.nycSchools.observe(this) {
             myAdapter.setSchools(it)
         }
+
+        myViewModel.biometricStatus.observeForever() {
+            it.let {
+                Log.d("Meow", "Biometric Detected")
+            }
+        }
+        myViewModel.authenticationResult.observeForever() {
+            it.let {
+                Log.d("Meow", "Authentication Detected")
+            }
+        }
     }
 
     override fun displayAlert(s: String, type: AlertType) {
@@ -66,17 +78,20 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
         }
     }
 
-    override fun displayAuthenticationResult(result: AuthenticationResult) {
-        val alertType : AlertType
-        alertType = when(result) {
+    override fun updateAuthenticationResult(result: AuthenticationResult) {
+        var s = ""
+        myViewModel.authenticationResult.value = result
+        val alertType : AlertType = when(result) {
             AuthenticationResult.AuthenticationSucceeded -> {
+                s = "Authentication Succeeded"
                 AlertType.DEFAULT
             }
             else -> {
+                s = "Authentication Failed"
                 AlertType.ERROR
             }
         }
-        Snackbar.make(binding.schoolList, result.errString, 5000)
+        Snackbar.make(binding.schoolList, s, 5000)
             .setBackgroundTint(getColor(alertType.bgColor))
             .setTextColor(getColor(alertType.bgColor))
             .show()
