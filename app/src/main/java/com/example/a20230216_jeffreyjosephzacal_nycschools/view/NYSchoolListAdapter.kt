@@ -3,6 +3,7 @@ package com.example.a20230216_jeffreyjosephzacal_nycschools.view
  * Adapter for MainActivity recycler view
  * MainActivty context is injected to launch second activity
  */
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
@@ -17,7 +18,6 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.NYSchoolsItem
 import com.example.a20230216_jeffreyjosephzacal_nycschools.databinding.SchoolItemBinding
-import com.example.a20230216_jeffreyjosephzacal_nycschools.security.AuthenticateFingerprint
 import javax.inject.Inject
 
 class NYSchoolListAdapter @Inject constructor(private val context: Context) : RecyclerView.Adapter<NYSchoolListAdapter.SchoolViewHolder>() {

@@ -6,9 +6,7 @@ package com.example.a20230216_jeffreyjosephzacal_nycschools
  */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AlertType
 import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AuthenticationResult
@@ -58,13 +56,6 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
 
     override fun updateAAuthenticationStatus(status: BiometricStatus) {
         myViewModel.biometricStatus = status
-//        when (status) {
-//            BiometricStatus.BIOMETRIC_UNKNOWN -> {}
-//            BiometricStatus.BIOMETRIC_SUCCESS -> {}
-//            BiometricStatus.BIOMETRIC_ERROR_NO_HARDWARE -> {}
-//            BiometricStatus.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {}
-//            BiometricStatus.BIOMETRIC_ERROR_NONE_ENROLLED -> {}
-//        }
     }
 
     override fun updateAuthenticationResult(result: AuthenticationResult) {
