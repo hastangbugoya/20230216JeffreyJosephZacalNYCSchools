@@ -21,7 +21,7 @@ import com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel.NYCSViewMod
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
+class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate, NYCSViewModel.UIUpdate {
     @Inject
     lateinit var myAdapter: NYSchoolListAdapter
 
@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
 
         val view = binding.root
         setContentView(view)
+
+        myViewModel.setImplementingUI(this)
 
         val mySchoolRecyclerView = binding.schoolList
         mySchoolRecyclerView.adapter = myAdapter
@@ -74,6 +76,13 @@ class MainActivity : AppCompatActivity(), AuthenticateFingerprint.UIUpdate {
         Snackbar.make(binding.schoolList, s, 5000)
             .setBackgroundTint(getColor(alertType.bgColor))
             .setTextColor(getColor(alertType.bgColor))
+            .show()
+    }
+
+    override fun showViewModelAlert(m: String) {
+        Snackbar.make(binding.schoolList, m, 5000)
+            .setBackgroundTint(getColor(AlertType.ERROR.bgColor))
+            .setTextColor(getColor(AlertType.ERROR.fgColor))
             .show()
     }
 }

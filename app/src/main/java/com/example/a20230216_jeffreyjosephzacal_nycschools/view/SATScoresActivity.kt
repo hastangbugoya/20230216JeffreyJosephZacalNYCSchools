@@ -8,19 +8,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.example.a20230216_jeffreyjosephzacal_nycschools.data.AlertType
 import com.example.a20230216_jeffreyjosephzacal_nycschools.databinding.ActivitySatscoresBinding
 import com.example.a20230216_jeffreyjosephzacal_nycschools.viewmodel.SATScoresViewModel
+import com.google.android.material.snackbar.Snackbar
 
-class SATScoresActivity : AppCompatActivity() {
-
+class SATScoresActivity : AppCompatActivity() , SATScoresViewModel.UIUpdate{
+    val binding : ActivitySatscoresBinding by lazy {
+        ActivitySatscoresBinding.inflate(LayoutInflater.from(this))
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivitySatscoresBinding.inflate(LayoutInflater.from(this))
         val view = binding.root
         setContentView(view)
 
         val myViewModel: SATScoresViewModel by viewModels()
+        myViewModel.setImplementingUI(this)
         myViewModel.nycSATScores.observe(this) {
             intent.getStringExtra("school_id")?.let { dbn ->
                 myViewModel.getSchoolScores(dbn)?.let { scores ->
@@ -46,9 +50,17 @@ class SATScoresActivity : AppCompatActivity() {
                             contentDescription = "average writing score is $text"
                         }
                     }
-                } ?: Toast.makeText(this, "School ID not found id data", Toast.LENGTH_LONG).show()
+                } ?: showViewModelAlert("School ID not found in SAT scores data")
 
-            } ?: Toast.makeText(this, "Error on retrieving school ID", Toast.LENGTH_LONG).show()
+            } ?: showViewModelAlert("Error receiving school ID")
         }
     }
+
+    override fun showViewModelAlert(m: String) {
+        Snackbar.make(binding.root, m, 5000)
+            .setBackgroundTint(getColor(AlertType.ERROR.bgColor))
+            .setTextColor(getColor(AlertType.ERROR.fgColor))
+            .show()
+    }
+
 }

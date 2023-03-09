@@ -14,17 +14,32 @@ import kotlinx.coroutines.launch
 
 class SATScoresViewModel : ViewModel() {
     var nycSATScores = MutableLiveData<List<SATScoresItem>>()
+    lateinit var ui : UIUpdate
     init {
         getAllSATData()
     }
     fun getAllSATData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            nycSATScores.postValue(
-                async{
-                    MyRetrofit.getService().getSATScores().body()
-                }.await())
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                nycSATScores.postValue(
+                    async{
+                        MyRetrofit.getService().getSATScores().body()
+                    }.await())
+            }
+        } catch (e: Exception) {
+            ui.showViewModelAlert("Exception : $e")
+            nycSATScores.value = listOf()
         }
     }
     fun getSchoolScores(sID : String) : SATScoresItem? = nycSATScores.value?.firstOrNull { it.dbn.equals(sID) }
     fun scoresCount() : Int = nycSATScores.value?.size ?: 0
+
+
+    interface UIUpdate {
+        fun showViewModelAlert(m : String)
+    }
+
+    fun setImplementingUI(uiupdate : UIUpdate) {
+        ui = uiupdate
+    }
 }
